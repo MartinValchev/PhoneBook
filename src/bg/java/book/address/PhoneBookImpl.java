@@ -16,11 +16,11 @@ public class PhoneBookImpl implements PhoneBook {
 	 private ArrayList<String> fileRecords;
 	 private File records;
 	 private RegexTester regexTester;
-	 private TreeMap<String, String> callsBook;
+	 private TreeMap<Integer, String> callsBook;
 	public PhoneBookImpl(File records){
 		this.records = records;
 		phoneBook = new TreeMap<String, String>();
-		callsBook = new TreeMap<String, String>();
+		callsBook = new TreeMap<Integer, String>();
 		fileRecords = new ArrayList<String>();
 		regexTester = new RegexTester();
 	}
@@ -29,7 +29,14 @@ public class PhoneBookImpl implements PhoneBook {
 		addFileRecords();
 	}
 	public void makeCallOut(String name){
-		
+		 Set<Entry<Integer, String>> set = callsBook.entrySet();
+	      Iterator<Entry<Integer, String>> iterator = set.iterator();
+	      while(iterator.hasNext()) {
+	         Map.Entry<Integer,String> callEntry = (Map.Entry<Integer,String>)iterator.next();
+	        if(callEntry.getValue().equals(name)){
+	        	int callCount =callEntry.getKey();
+	        }
+	      }
 	}
 	private void addFileRecords(){
 		for (int i = 0; i < fileRecords.size(); i++) {
